@@ -1,4 +1,4 @@
-/// Inivisible backgrounding for Windows based systems.
+// Inivisible backgrounding for Windows based systems.
 #![feature(windows_subsystem)]
 #![windows_subsystem = "windows"]
 

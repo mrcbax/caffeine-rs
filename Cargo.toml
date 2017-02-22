@@ -6,3 +6,6 @@ authors = ["Chad Baxter <cbaxter@mail.umw.edu>"]
 [dependencies]
 keystroke = "0.0.3"
 chrono = "0.3.0"
+toml = "0.3"
+serde = "0.9.8"
+serde_derive = "0.9.8"

@@ -5,27 +5,23 @@
 #![deny(warnings)]
 
 extern crate chrono;
-extern crate keystroke;
-extern crate toml;
-
 #[macro_use]
 extern crate serde_derive;
+extern crate toml;
 
-use std::fs::File;
+pub mod platform;
+
+use std::fs;
 use std::io::prelude::*;
 use std::{thread, time};
+use std::path::Path;
 
 use chrono::Duration;
-use keystroke::{Key, Physical};
-use keystroke::{release_key};
 
 fn main() {
     keep_awake(read_config().refresh_rate.unwrap());
 }
 
-
-/// This is what we're going to decode into. Each field is optional, meaning
-/// that it doesn't have to be present in TOML.
 #[derive(Debug, Deserialize)]
 struct Config {
     refresh_rate: Option<i64>,
@@ -41,13 +37,6 @@ fn reset_timer(counter: Duration, seconds: i64) -> Duration {
     counter + Duration::seconds(seconds)
 }
 
-///Sends a key-release action to the OS.
-fn send_key_press() {
-    use Key::Physical;
-    use Physical::Shift;
-    release_key(Physical(Shift));
-}
-
 ///Loop manager.
 ///
 /// #Arguments
@@ -59,22 +48,35 @@ fn keep_awake(seconds: i64){
     while sintinel {
         if counter == Duration::seconds(0) {
             counter = reset_timer(counter, seconds);
-            send_key_press();
+            platform::platform::send_key_press();
         }
         thread::sleep(time::Duration::from_millis(1000));
         counter = counter - Duration::seconds(1);
     }
 }
 
-fn read_config() -> Config {
-    let mut input = String::new();
-    let name = String::from("caffeine.toml");
-    File::open(&name).and_then(|mut f| {
-        f.read_to_string(&mut input)
-    }).unwrap();
 
+/// Reads a configuration file if it exists.
+///
+/// Passes along the configuration data as a struct, returns defaults if no config is specified.
+fn read_config() -> Config {
+    let name = String::from("caffeine.toml");
     let some_duration: Option<i64> = Some(59);
     let mut decoded: Config = Config { refresh_rate: some_duration };
-    decoded: Config = toml::from_str(input.as_str()).unwrap();
+    if path_exists(&name) {
+        let mut input = String::new();
+        fs::File::open(&name).and_then(|mut f| {
+            f.read_to_string(&mut input)
+        }).unwrap();
+        decoded: Config = toml::from_str(input.as_str()).unwrap();
+    }
     decoded
+}
+/// Determines if a path exists or not.
+///
+/// #Arguments
+///
+/// * `path` - A str reference to a path string.
+fn path_exists(path: &str) -> bool {
+    Path::new(path).exists()
 }

@@ -4,8 +4,13 @@ version = "0.1.0"
 authors = ["Chad Baxter <cbaxter@mail.umw.edu>"]
 
 [dependencies]
-keystroke = "0.0.3"
 chrono = "0.3.0"
 toml = "0.3"
 serde = "0.9.8"
 serde_derive = "0.9.8"
+
+[target.'cfg(unix)'.dependencies]
+ioctl-rs = "0.1"
+
+[target.'cfg(windows)'.dependencies]
+keystroke = "0.0.3"

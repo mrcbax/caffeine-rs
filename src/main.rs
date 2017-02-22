@@ -1,3 +1,6 @@
+#![feature(windows_subsystem)]
+#![windows_subsystem = "windows"]
+
 extern crate keystroke;
 extern crate chrono;
 
@@ -28,10 +31,6 @@ fn keep_awake(seconds: i64){
         if counter == Duration::seconds(0) {
             counter = reset_timer(counter, seconds);
             send_key_press();
-            println!("Sent shift key.")
-        }
-        else {
-            println!("{} Seconds remaining", counter);
         }
         thread::sleep(time::Duration::from_millis(1000));
         counter = counter - Duration::seconds(1);

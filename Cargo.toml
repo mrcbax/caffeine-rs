@@ -5,4 +5,4 @@ authors = ["Chad Baxter <cbaxter@mail.umw.edu>"]
 
 [dependencies]
 keystroke = "0.0.3"
-time = "0.1.36"
+chrono = "0.3.0"

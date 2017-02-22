@@ -1,0 +1,8 @@
+[package]
+name = "caffeine"
+version = "0.1.0"
+authors = ["Chad Baxter <cbaxter@mail.umw.edu>"]
+
+[dependencies]
+keystroke = "0.0.3"
+time = "0.1.36"

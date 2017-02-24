@@ -52,8 +52,8 @@ fn reset_timer(counter: Duration, seconds: i64) -> Duration {
 ///
 fn keep_awake(refresh_rate: i64, start_after: i64, exit_after: i64, active_for: i64){
     thread::sleep(time::Duration::new(start_after as u64, 0));
-    let mut exit: i64 = 0;
-    let mut active: i64 = 0;
+    let mut exit: i64 = -1;
+    let mut active: i64 = -1;
     if exit_after > 0 {
         exit = exit_after;
     }
@@ -73,7 +73,7 @@ fn keep_awake(refresh_rate: i64, start_after: i64, exit_after: i64, active_for: 
         counter = counter - Duration::seconds(1);
         exit -= 1;
         active -= 1;
-        if exit <= 0 || active <= 0 {
+        if exit == 0 || active == 0 {
             sintinel = false;
         }
     }

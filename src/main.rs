@@ -19,13 +19,13 @@ use std::path::Path;
 
 use chrono::Duration;
 
-fn main() {
-    keep_awake(read_config().refresh_rate.unwrap());
-}
-
 #[derive(Debug, Deserialize)]
 struct Config {
     refresh_rate: Option<i64>,
+}
+
+fn main() {
+    keep_awake(read_config().refresh_rate.unwrap());
 }
 
 ///Resets the timer duration to a given value.

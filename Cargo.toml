@@ -11,6 +11,5 @@ serde_derive = "0.9.8"
 
 [target.'cfg(unix)'.dependencies]
 uinput = "0.1.2"
-
 [target.'cfg(windows)'.dependencies]
 keystroke = "0.0.3"

@@ -1,7 +1,8 @@
 // Inivisible backgrounding for Windows based systems.
 #![feature(windows_subsystem)]
-#![feature(type_ascription)]
 #![windows_subsystem = "windows"]
+
+#![feature(type_ascription)]
 #![deny(warnings)]
 
 extern crate chrono;

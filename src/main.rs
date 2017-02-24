@@ -49,8 +49,10 @@ fn keep_awake(seconds: i64){
         if counter == Duration::seconds(0) {
             counter = reset_timer(counter, seconds);
             platform::platform::send_key_press();
+            println!("sent keys.");
         }
         thread::sleep(time::Duration::from_millis(1000));
+        println!("{} seconds remaining", counter);
         counter = counter - Duration::seconds(1);
     }
 }

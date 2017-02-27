@@ -106,3 +106,14 @@ fn read_config() -> Config {
 fn path_exists(path: &str) -> bool {
     Path::new(path).exists()
 }
+
+#[cfg(test)]
+mod tests {
+
+    #[test]
+    fn path_exists_ls() {
+        use path_exists;
+        assert!(path_exists("/bin/ls"))
+    }
+
+}

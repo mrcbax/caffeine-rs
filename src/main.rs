@@ -110,6 +110,9 @@ fn path_exists(path: &str) -> bool {
 #[cfg(test)]
 mod tests {
 
+    extern crate chrono;
+    use chrono::Duration;
+
     #[test]
     fn path_exists_ls() {
         use path_exists;
@@ -119,7 +122,7 @@ mod tests {
     #[test]
     fn reset_timer_once() {
         use reset_timer;
-        assert!(chrono::Duration.seconds(5).eq(reset_timer(chrono::Duration.seconds(0),5)))
+        assert!(Duration::seconds(5).eq(&reset_timer(Duration::seconds(0),5)))
     }
 
 }

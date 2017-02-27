@@ -116,4 +116,10 @@ mod tests {
         assert!(path_exists("/bin/ls"))
     }
 
+    #[test]
+    fn reset_timer_once() {
+        use reset_timer;
+        assert!(chrono::Duration.seconds(5).eq(reset_timer(chrono::Duration.seconds(0),5)))
+    }
+
 }

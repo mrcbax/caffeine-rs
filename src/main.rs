@@ -113,6 +113,21 @@ mod tests {
     extern crate chrono;
     use chrono::Duration;
 
+    /*#[derive(Debug, Deserialize, PartialEq, Eq, Hash)]
+    struct Config {
+        refresh_rate: Option<i64>,
+        start_after: Option<i64>,
+        exit_after: Option<i64>,
+        active_for: Option<i64>,
+    }
+
+    #[test]
+    #[ignore]
+    fn read_config_target_dir() {
+        use read_config;
+        assert_eq!(read_config(), Config{refresh_rate: Some(10), start_after: Some(30), exit_after: Some(800), active_for: Some(900)})
+    } */
+
     #[test]
     fn path_exists_ls() {
         use path_exists;

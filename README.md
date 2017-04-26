@@ -11,7 +11,7 @@ You can clone from GitHub or IPFS:
 
 - GitHub: `git clone https://www.github.com/LogoiLab/caffeine-rs.git`
 
-- IPFS: `git clone https://ipfs.io/ipfs/QmNkk3VAicff6LpiXnmCtCixELSW3dPwuvjMm82GwgHdyq/caffeine-rs`
+- IPFS: `git clone https://ipfs.io/ipfs/QmSqBKbDvmSaxYBWNsUHRDadBuAvoYNTWRJE1HmdN5rdXH/caffeine-rs` (note: IPFS version by inherent design is always at least one commit behind the GitHub version)
 
 Caffeine takes no inputs, but it may read a configuration file if you place one in the same directory as caffeine itself. The configuration file is a toml file named `caffeine.toml`. An example `caffeine.toml` file:
 
